@@ -45,4 +45,3 @@ class Smiley:
         """
         self.sense_hat.set_pixels(self.pixels)
 
-print(Smiley)

@@ -130,7 +130,7 @@ python3 main.py
    | ------------ |-----------|------------|------------|
    |  sequence    | smiley.py | 15         | 12         |
    |  selection   | sad.py    | 26         | 4          |
-   |  iteration   | happy.py  | 20         | 3          |
+   |  iteration   | happy.py  | 21         | 2          |
 
 4. Though everything in Python is an object, it is sometimes said to have four "primitive" types. Examining the three files `smiley.py`, `sad.py`, and `happy.py`, identify which of the following types are used in any of these files, and give an example of each (use an example from the code, if applicable, otherwise provide an example of your own):
 
@@ -145,18 +145,25 @@ python3 main.py
 
 > Class variable: YELLOW = (255, 255, 0)
 > 
-> Instance variable: Y = self.YELLOW
+> Instance variable: self.pixels
 > 
-> YELLOW is defined as an attriubute for the class Smiley, whereas Y is defined as an attribute for instances of Smiley (at initialization).
+> YELLOW is a class variable and is "owned" by the Class. It will be available to all instances of the Smiley Class.
+> 
+> pixels is an instance variable - it is "owned" by the instance and only available to the instance that is created at initialization.
+> Once the instance is no longer available, we would also lose access to instance.pixels
+> 
 >
 
 6. Examine `happy.py`, and identify the constructor (initializer) for the `Happy` class:
    1. What is the purpose of a constructor (in general) and this one (in particular)?
 
-   > a constructor is used to assign values to the attributes of a class when it is initialized.
+   > a constructor is a method that creates and object of a class. 
    > 
-   > The constructor in Smiley is set up to initialise all of the attributes of the parent classes (Smiley and Blinkable) and to call methods draw_mouth and draw_eyes - so it creates a smiley with the shape that is defined in the Smiley class then draws the eyes and the mouth.
-   > This smiley has the ability to blink.
+   > 
+   > The constructor in Happy is set up to initialise call the __init__ method of Smiley (using super function), and also call Happy's methods draw_mouth and draw_eyes.
+   > As Happy inherits from both Smiley and Blinkable, the class has access to its parents Classes methods and attributes.
+   > However because Happy has it's own initializer defined, it must contain super().__init__ to call the initializer method from its parent class 
+   > 
    >
 
    2. What statement(s) does it execute (consider the `super` call), and what is the result?
@@ -273,16 +280,28 @@ Unlike the `Happy` smiley, the current implementation of the `Sad` smiley does n
 
 1. Does the code's author believe that every `Smiley` should be able to blink? Explain.
 
-> We do not know if the author believes every smiley should be able to blink, but
+> ~~We do not know if the author believes every smiley should be able to blink, but
 > we can say that they believe every Happy smiley MUST be able to blink. 
 > They have not given a blink method to Sad smileys, so they must believe that sad smileys
-> do not need to blink.
+> do not need to blink.~~
 >
+> The author has defined a blink method in the Happy class, indicating they think Happy smileys should be able to blink.
+> They have also specified that Happy class inherits from Blinkable, so they must believe that Happy smileys *must* be able to blink.
+> 
+>They did not specify a blink method for the Sad class - this indicates that they do not think Sad smileys should be able
+> to blink. Therefore, they do not believe that every smiley should be able to blink.
+> 
 
 2. For those smileys that blink, does the author expect them to blink in the same way? Explain.
 
-> Yes, all smiley instances of the Happy() class blink in the same way (they begin with eyes open, they close thier eyes for a certain time, then open their eyes again). However, by passing the delay argument
-> when calling the blink method, we can change how fast or slow the smiley blinks.
+> ~~Yes, all smiley instances of the Happy() class blink in the same way (they begin with eyes open, they close thier eyes for a certain time, then open their eyes again). However, by passing the delay argument
+> when calling the blink method, we can change how fast or slow the smiley blinks.~~
+> 
+> So far, only smiley instances of the Happy class are able to blink - and they blink in the same way: eyes begin open, eyes close for a time, eyes open again. The time spent with eyes closed can be defined with an argument, but default is 0.25s. 
+> 
+> However, the author has created an abstract method for blink in the Blinkable class. 
+> This indicates that they thought that classes that inherit from Blinkable and must have a blink method would want to have different ways of blinking defined.
+> 
 >
 
 3. Referring to the implementation of blink in the Happy and Sad Smiley classes, give a brief explanation of what polymorphism is.
