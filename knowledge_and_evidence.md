@@ -114,7 +114,7 @@ python3 main.py
    | ----------              |--------|-----------------|
    | built-in primitive type | dimmed | True            |
    | built-in composite type | WHITE  | (255, 255, 255) |
-   | user-defined type       | Smiley | __main__.Smiley               |
+   | user-defined type       | Smiley |                |
 
 2. Fill in (`_`) the following table based on the code in `smiley.py`:
 
@@ -160,15 +160,15 @@ python3 main.py
    > a constructor is a method that creates and object of a class. 
    > 
    > 
-   > The constructor in Happy is set up to initialise call the __init__ method of Smiley (using super function), and also call Happy's methods draw_mouth and draw_eyes.
+   > The constructor in Happy is set up to initialise call the `__init__` method of Smiley (using super function), and also call Happy's methods `draw_mouth` and `draw_eyes`.
    > As Happy inherits from both Smiley and Blinkable, the class has access to its parents Classes methods and attributes.
-   > However because Happy has it's own initializer defined, it must contain super().__init__ to call the initializer method from its parent class 
+   > However because Happy has it's own initializer defined, it must contain `super().__init__` to call the initializer method from its parent class 
    > 
    >
 
    2. What statement(s) does it execute (consider the `super` call), and what is the result?
 
-   > it executes the super().__init__ to initialise the attributes of Smiley and Blinkable. Then it executes the draw_mouth and draw_eyes methods.
+   > it executes the `super().__init__` to initialise the attributes of Smiley and Blinkable. Then it executes the `draw_mouth` and `draw_eyes` methods.
    >
 
 ### Code style
